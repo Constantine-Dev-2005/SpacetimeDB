@@ -39,7 +39,7 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Emscripten")
   set(EXPORTED_FUNCS "['_malloc','_free','___describe_module__','___call_reducer__']")
 
   # Produce a standalone .wasm (no JS harness) with no entry point
-  target_link_options(lib PRIVATE
+  target_link_options(${OUTPUT_NAME} PRIVATE
     "SHELL:-sSTANDALONE_WASM=1"
     "SHELL:-sWASM=1"
     "SHELL:--no-entry"
@@ -60,5 +60,5 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Emscripten")
   )
 
   # Name the output lib.wasm
-  set_target_properties(lib PROPERTIES OUTPUT_NAME "lib" SUFFIX ".wasm")
+  set_target_properties(${OUTPUT_NAME} PROPERTIES OUTPUT_NAME "lib" SUFFIX ".wasm")
 endif()

@@ -217,7 +217,7 @@ inline std::vector<std::string> parseParameterNames(const std::string& param_lis
  */
 #define SPACETIMEDB_GENERATE_EMPTY_FIELD_REGISTRAR(Type) \
     template<> \
-    struct ::SpacetimeDB::field_registrar<Type> { \
+    struct SpacetimeDB::field_registrar<Type> { \
         static void register_fields() { \
             /* Default: no field registration needed */ \
         } \
@@ -231,7 +231,7 @@ inline std::vector<std::string> parseParameterNames(const std::string& param_lis
  */
 #define SPACETIMEDB_GENERATE_FIELD_REGISTRAR_WITH_FIELDS(Type, ...) \
     template<> \
-    struct ::SpacetimeDB::field_registrar<Type> { \
+    struct SpacetimeDB::field_registrar<Type> { \
         static void register_fields() { \
             static bool registered = false; \
             if (registered) return; \
@@ -252,7 +252,7 @@ inline std::vector<std::string> parseParameterNames(const std::string& param_lis
  */
 #define SPACETIMEDB_GENERATE_TYPE_REGISTRATION_BUNDLE(Type) \
     template<> \
-    struct ::SpacetimeDB::bsatn::algebraic_type_of<Type> { \
+    struct SpacetimeDB::bsatn::algebraic_type_of<Type> { \
         static ::SpacetimeDB::bsatn::AlgebraicType get() { \
             return ::SpacetimeDB::bsatn::bsatn_traits<Type>::algebraic_type(); \
         } \
@@ -267,7 +267,7 @@ inline std::vector<std::string> parseParameterNames(const std::string& param_lis
  */
 #define SPACETIMEDB_GENERATE_TYPE_REGISTRATION_BUNDLE_WITH_FIELDS(Type, ...) \
     template<> \
-    struct ::SpacetimeDB::bsatn::algebraic_type_of<Type> { \
+    struct SpacetimeDB::bsatn::algebraic_type_of<Type> { \
         static ::SpacetimeDB::bsatn::AlgebraicType get() { \
             return ::SpacetimeDB::bsatn::bsatn_traits<Type>::algebraic_type(); \
         } \
