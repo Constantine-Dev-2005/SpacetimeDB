@@ -100,16 +100,26 @@
 // =============================================================================
 
 // Extract type from (name, type) pair
-#define VARIANT_TYPE(pair) VARIANT_TYPE_IMPL pair
-#define VARIANT_TYPE_IMPL(name, type) type
+#define SPACETIMEDB_VARIANT_TYPE(pair) SPACETIMEDB_VARIANT_TYPE_IMPL pair
+#define SPACETIMEDB_VARIANT_TYPE_IMPL(name, type) type
 
-// Extract name from (name, type) pair  
-#define VARIANT_NAME(pair) VARIANT_NAME_IMPL pair
-#define VARIANT_NAME_IMPL(name, type) #name
+// Extract name from (name, type) pair
+#define SPACETIMEDB_VARIANT_NAME(pair) SPACETIMEDB_VARIANT_NAME_IMPL pair
+#define SPACETIMEDB_VARIANT_NAME_IMPL(name, type) #name
 
 // Separator macros
-#define COMMA() ,
-#define EMPTY()
+#define SPACETIMEDB_COMMA() ,
+#define SPACETIMEDB_EMPTY()
+
+// Backward-compatibility aliases (deprecated - prefer SPACETIMEDB_* prefixed versions)
+#ifndef VARIANT_TYPE
+#define VARIANT_TYPE SPACETIMEDB_VARIANT_TYPE
+#define VARIANT_TYPE_IMPL SPACETIMEDB_VARIANT_TYPE_IMPL
+#define VARIANT_NAME SPACETIMEDB_VARIANT_NAME
+#define VARIANT_NAME_IMPL SPACETIMEDB_VARIANT_NAME_IMPL
+#define COMMA SPACETIMEDB_COMMA
+#define EMPTY SPACETIMEDB_EMPTY
+#endif
 
 // =============================================================================
 // UNIFIED ENUM SYSTEM
@@ -259,11 +269,11 @@
     \
     SPACETIMEDB_GENERATE_EMPTY_FIELD_REGISTRAR(EnumName)
 
-// Auto-assign enum values (0, 1, 2, etc.) - supports up to 10 variants
+// Auto-assign enum values (0, 1, 2, etc.) - supports up to 20 variants
 #define SPACETIMEDB_ENUM_ASSIGN_VALUES(...) \
-    SPACETIMEDB_ENUM_DISPATCH_COUNT(__VA_ARGS__, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1)(__VA_ARGS__)
+    SPACETIMEDB_ENUM_DISPATCH_COUNT(__VA_ARGS__, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1)(__VA_ARGS__)
 
-#define SPACETIMEDB_ENUM_DISPATCH_COUNT(_1,_2,_3,_4,_5,_6,_7,_8,_9,_10,N,...) SPACETIMEDB_ENUM_ASSIGN_##N
+#define SPACETIMEDB_ENUM_DISPATCH_COUNT(_1,_2,_3,_4,_5,_6,_7,_8,_9,_10,_11,_12,_13,_14,_15,_16,_17,_18,_19,_20,N,...) SPACETIMEDB_ENUM_ASSIGN_##N
 
 #define SPACETIMEDB_ENUM_ASSIGN_1(a) a = 0
 #define SPACETIMEDB_ENUM_ASSIGN_2(a, b) a = 0, b = 1
@@ -275,10 +285,20 @@
 #define SPACETIMEDB_ENUM_ASSIGN_8(a, b, c, d, e, f, g, h) a = 0, b = 1, c = 2, d = 3, e = 4, f = 5, g = 6, h = 7
 #define SPACETIMEDB_ENUM_ASSIGN_9(a, b, c, d, e, f, g, h, i) a = 0, b = 1, c = 2, d = 3, e = 4, f = 5, g = 6, h = 7, i = 8
 #define SPACETIMEDB_ENUM_ASSIGN_10(a, b, c, d, e, f, g, h, i, j) a = 0, b = 1, c = 2, d = 3, e = 4, f = 5, g = 6, h = 7, i = 8, j = 9
+#define SPACETIMEDB_ENUM_ASSIGN_11(a, b, c, d, e, f, g, h, i, j, k) a = 0, b = 1, c = 2, d = 3, e = 4, f = 5, g = 6, h = 7, i = 8, j = 9, k = 10
+#define SPACETIMEDB_ENUM_ASSIGN_12(a, b, c, d, e, f, g, h, i, j, k, l) a = 0, b = 1, c = 2, d = 3, e = 4, f = 5, g = 6, h = 7, i = 8, j = 9, k = 10, l = 11
+#define SPACETIMEDB_ENUM_ASSIGN_13(a, b, c, d, e, f, g, h, i, j, k, l, m) a = 0, b = 1, c = 2, d = 3, e = 4, f = 5, g = 6, h = 7, i = 8, j = 9, k = 10, l = 11, m = 12
+#define SPACETIMEDB_ENUM_ASSIGN_14(a, b, c, d, e, f, g, h, i, j, k, l, m, n) a = 0, b = 1, c = 2, d = 3, e = 4, f = 5, g = 6, h = 7, i = 8, j = 9, k = 10, l = 11, m = 12, n = 13
+#define SPACETIMEDB_ENUM_ASSIGN_15(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o) a = 0, b = 1, c = 2, d = 3, e = 4, f = 5, g = 6, h = 7, i = 8, j = 9, k = 10, l = 11, m = 12, n = 13, o = 14
+#define SPACETIMEDB_ENUM_ASSIGN_16(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p) a = 0, b = 1, c = 2, d = 3, e = 4, f = 5, g = 6, h = 7, i = 8, j = 9, k = 10, l = 11, m = 12, n = 13, o = 14, p = 15
+#define SPACETIMEDB_ENUM_ASSIGN_17(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q) a = 0, b = 1, c = 2, d = 3, e = 4, f = 5, g = 6, h = 7, i = 8, j = 9, k = 10, l = 11, m = 12, n = 13, o = 14, p = 15, q = 16
+#define SPACETIMEDB_ENUM_ASSIGN_18(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r) a = 0, b = 1, c = 2, d = 3, e = 4, f = 5, g = 6, h = 7, i = 8, j = 9, k = 10, l = 11, m = 12, n = 13, o = 14, p = 15, q = 16, r = 17
+#define SPACETIMEDB_ENUM_ASSIGN_19(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s) a = 0, b = 1, c = 2, d = 3, e = 4, f = 5, g = 6, h = 7, i = 8, j = 9, k = 10, l = 11, m = 12, n = 13, o = 14, p = 15, q = 16, r = 17, s = 18
+#define SPACETIMEDB_ENUM_ASSIGN_20(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t) a = 0, b = 1, c = 2, d = 3, e = 4, f = 5, g = 6, h = 7, i = 8, j = 9, k = 10, l = 11, m = 12, n = 13, o = 14, p = 15, q = 16, r = 17, s = 18, t = 19
 
 // Register variants in SumTypeBuilder
 #define SPACETIMEDB_ENUM_ADD_VARIANTS(...) \
-    SPACETIMEDB_FOR_EACH_VARIANT(SPACETIMEDB_ENUM_ADD_UNIT_VARIANT, EMPTY, __VA_ARGS__)
+    SPACETIMEDB_FOR_EACH_VARIANT(SPACETIMEDB_ENUM_ADD_UNIT_VARIANT, SPACETIMEDB_EMPTY, __VA_ARGS__)
 
 #define SPACETIMEDB_ENUM_ADD_UNIT_VARIANT(name) \
     builder.with_unit_variant(#name);
@@ -299,7 +319,7 @@
         variant_type value; \
         \
         static constexpr const char* variant_names[] = { \
-            FOR_EACH_VARIANT(VARIANT_NAME, COMMA, __VA_ARGS__) \
+            SPACETIMEDB_FOR_EACH_VARIANT(SPACETIMEDB_VARIANT_NAME, SPACETIMEDB_COMMA, __VA_ARGS__) \
         }; \
         \
         EnumName() = default; \
@@ -358,10 +378,14 @@
     SPACETIMEDB_GENERATE_EMPTY_FIELD_REGISTRAR(EnumName)
 
 // Extract variant types from (name, type) pairs
-#define SPACETIMEDB_ENUM_VARIANT_TYPES(...) FOR_EACH_VARIANT(VARIANT_TYPE, COMMA, __VA_ARGS__)
+#define SPACETIMEDB_ENUM_VARIANT_TYPES(...) SPACETIMEDB_FOR_EACH_VARIANT(SPACETIMEDB_VARIANT_TYPE, SPACETIMEDB_COMMA, __VA_ARGS__)
 
-// Type alias for unit variants (no data)
-using Unit = std::monostate;
+// Type alias for unit variants (no data) - in SpacetimeDB namespace
+namespace SpacetimeDB {
+    using Unit = std::monostate;
+}
+// Backward-compatible global alias so existing code using `Unit` directly still works
+using SpacetimeDB::Unit;
 
 // =============================================================================
 // VARIANT HELPER TEMPLATES
